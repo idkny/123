@@ -14,7 +14,7 @@ class MessageProducer:
             value_serializer=lambda v: orjson.dumps(v),
             acks="all",
         )
- 
+
     def send_msg(self, msg):
         print("sending message...")
         try:
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     CheckIsRunning().is_zoo_running()
     CheckIsRunning().is_kafka_running("First_topic")
     while True:
-        new_event =EventGenerator().create_new_event()
+        new_event = EventGenerator().create_new_event()
         registered_user = new_event
         print(registered_user)
         resp = message_producer.send_msg(registered_user)

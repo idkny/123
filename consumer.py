@@ -4,7 +4,6 @@ from kafka import KafkaConsumer
 from running import *
 
 
-
 class MessageConsumer:
     mongo_do = MongoConnect("mongodb://localhost:27017", "test_kfk", "event")
 

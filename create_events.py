@@ -15,7 +15,6 @@ class EventGenerator:
         EventGenerator.event_id += 1
 
     def create_new_event(self):
-       
 
         data = {
             "event_id": EventGenerator.event_id,

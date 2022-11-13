@@ -1,5 +1,4 @@
 from pymongo import MongoClient, errors, ASCENDING
- 
 
 
 class MongoConnect:
@@ -37,7 +36,7 @@ class MongoConnect:
 
     def prevent_duplicate(self):
         self.collection.create_index([("created_at", ASCENDING)], unique=True)
-   
+
     def get_missing_docs(self, time_stamp):
 
         data = self.collection.find({"created_at": {"$gt": time_stamp}}).sort(
@@ -57,3 +56,7 @@ class MongoConnect:
         num_of_docs = self.collection.count_documents({})
         print(f"{num_of_docs} docs in coll")
         return num_of_docs
+
+    def shutdown(self):
+        self.client.close()
+        print("mongo connection close")

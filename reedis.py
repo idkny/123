@@ -20,21 +20,21 @@ class RedisConnect:
 
     def digest(self, events):
         try:
-            for event in events:           
+            for event in events:
                 self.redis_client.lpush("events", str(event))
         except redis.ResponseError as err:
             print(err)
 
     def get_last(self):
-            try:
-                last = self.redis_client.lrange("events", 0, 0)
-                time = re.findall(
-                    r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{0,6}", last[0].decode()
-                )
-                return str(time[0])
-            except redis.exceptions.AskError as err:
-                print(err)
-                return False
+        try:
+            last = self.redis_client.lrange("events", 0, 0)
+            time = re.findall(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{0,6}", last[0].decode()
+            )
+            return str(time[0])
+        except redis.exceptions.AskError as err:
+            print(err)
+            return False
 
     def count_keys(self):
         try:
